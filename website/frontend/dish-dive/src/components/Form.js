@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import axios from 'axios'
+import Suggestions from './Suggestions'
 
 export default function Form(prop){
     const [username, setUsername] = useState(prop.username)
@@ -6,6 +8,7 @@ export default function Form(prop){
     const [pref, setPref] = useState([])
     const [selectValue, setSelectValue] = useState('')
     const [filters, setFilters] = useState(['Select Filter','Eco-friendly','Vegan','Vegetarian','Meat-lover'])
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     const handleChange = (e) => {
         const value = e.target.value
@@ -24,6 +27,7 @@ export default function Form(prop){
             return
         }
         setPref([...pref, value])
+        e.preventDefault()
         e.target.value = ''
     }
 
@@ -36,13 +40,29 @@ export default function Form(prop){
             return
         }
         setPref([...pref, value])
+        e.preventDefault()
         e.target.value = ''
+    }
+
+    const post = async() => {
+        // const data = {
+        //     user_id: username,
+        //     preferences: pref,
+        //     filters: tags
+        // }
+
+        // await axios.post('http://localhost:4000/users', data)
+        // .then(res => console.log(res.data))
+
+        setIsLoggedIn(true)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(tags)
         console.log(pref)
+
+        post()
     }
 
     const deleteTag = (index) => {
@@ -88,6 +108,12 @@ export default function Form(prop){
                     </div>
                 ))}
             </div>
+        )
+    }
+
+    if (isLoggedIn){
+        return(
+            <Suggestions username = {username} />
         )
     }
 
