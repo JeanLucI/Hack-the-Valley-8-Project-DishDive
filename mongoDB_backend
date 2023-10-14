@@ -1,5 +1,5 @@
 # app.py
-from flask import Flask
+from flask import Flask, jsonify
 from flask_pymongo import PyMongo
 
 from flask import request, jsonify
@@ -13,11 +13,18 @@ mongo = PyMongo(app)
 def index():
     return 'Connected to MongoDB!'
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# New route to check if the user exists
+@app.route('/check_user', methods=['POST'])
+def check_user():
+    data = request.json
+    user_id = data.get('user_id')
 
-# app.py for getting user survey on taste
+    # Check if the user exists in the 'users' collection
+    user_exists = bool(mongo.db.users.find_one({'_id': user_id}))
 
+    return jsonify({'status': user_exists})
+
+# Route to update preferences
 @app.route('/update_preferences', methods=['POST'])
 def update_preferences():
     data = request.json
@@ -29,7 +36,7 @@ def update_preferences():
 
     return jsonify({'status': 'Preferences updated successfully!'})
 
-# app.py for taste history
+# Route to add taste history
 @app.route('/add_taste_history', methods=['POST'])
 def add_taste_history():
     data = request.json
@@ -42,7 +49,5 @@ def add_taste_history():
 
     return jsonify({'status': 'Taste history added successfully!'})
 
-
-#run this test on postman with:  python name.py
-
-
+if __name__ == '__main__':
+    app.run(debug=True)
