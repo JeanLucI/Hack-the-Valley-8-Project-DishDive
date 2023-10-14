@@ -1,0 +1,48 @@
+# app.py
+from flask import Flask
+from flask_pymongo import PyMongo
+
+from flask import request, jsonify
+
+app = Flask(__name__)
+app.config["MONGO_URI"] = "mongodb://localhost:27017/your_database_name"
+mongo = PyMongo(app)
+
+# Example route to test MongoDB connection
+@app.route('/')
+def index():
+    return 'Connected to MongoDB!'
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+# app.py for getting user survey on taste
+
+@app.route('/update_preferences', methods=['POST'])
+def update_preferences():
+    data = request.json
+    user_id = data.get('user_id')
+    preferences = data.get('preferences')
+
+    # Update or insert user preferences into MongoDB
+    mongo.db.users.update_one({'_id': user_id}, {'$set': {'preferences': preferences}}, upsert=True)
+
+    return jsonify({'status': 'Preferences updated successfully!'})
+
+# app.py for taste history
+@app.route('/add_taste_history', methods=['POST'])
+def add_taste_history():
+    data = request.json
+    user_id = data.get('user_id')
+    recipe_id = data.get('recipe_id')
+    feedback = data.get('feedback')
+
+    # Insert taste history into MongoDB
+    mongo.db.taste_history.insert_one({'user_id': user_id, 'recipe_id': recipe_id, 'feedback': feedback})
+
+    return jsonify({'status': 'Taste history added successfully!'})
+
+
+#run this test on postman with:  python name.py
+
+
