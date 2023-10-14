@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import Form from "../components/Form";
+import Suggestions from "../components/Suggestions";
 
 export default function Home(){
 
@@ -26,6 +27,9 @@ export default function Home(){
             return
         }
         // queryUser();
+        if(username === 'Jean'){
+            setIsUser(true)
+        }
 
         setLoggedIn(true)
     }
@@ -45,7 +49,13 @@ export default function Home(){
             </>
         )
     }
-    else if (!isUser){
+    else if (isUser){
+        
+        return(
+            <Suggestions username = {username}/>
+        )
+    }
+    else{
         return(
             <Form username = {username}/>
         )
