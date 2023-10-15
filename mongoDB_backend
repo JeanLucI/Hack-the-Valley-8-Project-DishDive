@@ -75,6 +75,19 @@ def fetch_suggestion():
 
     return jsonify({'suggestion': suggestion})
 
+# New route to add a new user to the database
+@app.route('/add_user', methods=['POST'])
+def add_user():
+    data = request.json
+    user_id = data.get('user_id')
+    preferences = data.get('preferences')
+    filters = data.get('filters')
+
+    # Insert a new user into the 'users' collection
+    mongo.db.users.insert_one({'_id': user_id, 'preferences': preferences, 'filters': filters})
+
+    return jsonify({'status': 'User added successfully!'})
+
 # Function to generate a meal suggestion (replace this with your actual logic)
 def generate_suggestion(preferences, filters):
     # Your existing code for generating suggestions goes here
