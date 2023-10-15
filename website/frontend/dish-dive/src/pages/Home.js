@@ -6,18 +6,18 @@ import Suggestions from "../components/Suggestions";
 export default function Home(){
 
     const [username, setUsername] = useState('');
-    const [message, setMessage] = useState('')
+    const [message, setMessage] = useState(<br></br>)
     const [isUser, setIsUser] = useState(false)
     const [loggedIn, setLoggedIn] = useState(false)
 
-    // const queryUser = async() => {
-    //     await axios.get('http://localhost:4000/test')// CHANGE THIS
-    //     .then(res => {
-    //         if (res){
-    //             setIsUser(true);
-    //         }
-    //     })
-    // }
+    const queryUser = async() => {
+        await axios.post('http://127.0.0.1:5000/check_user', {user_id: username})// CHANGE THIS
+        .then(res => {
+            if (res){
+                setIsUser(true);
+            }
+        })
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -26,7 +26,7 @@ export default function Home(){
             setMessage(<p className="error">Invalid Username. Please try again.</p>)
             return
         }
-        // queryUser();
+        queryUser();
         if(username === 'Jean'){
             setIsUser(true)
         }

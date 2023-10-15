@@ -49,14 +49,15 @@ export default function Form(prop){
     }
 
     const post = async() => {
-        // const data = {
-        //     user_id: username,
-        //     preferences: pref,
-        //     filters: tags
-        // }
+        const data = {
+            user_id: username,
+            preferences: pref,
+            filters: tags
+        }
 
-        // await axios.post('http://localhost:4000/users', data)
-        // .then(res => console.log(res.data))
+        await axios.post('http://127.0.0.1:5000/add_user', data)
+        .then(res => console.log(res.data))
+        .catch((err)=> console.log(err))
 
         setIsLoggedIn(true)
     }
@@ -122,9 +123,12 @@ export default function Form(prop){
     }
 
     return(
+        <>
+        <h1 className='welcome'>Welcome Junior Chef {username}!</h1>
         <form className="firstForm">
-            <label>Enter food items you like one by one!</label>
+            <label className='firstQ'>Enter food items you like one by one!</label>
             <input type="text" className="preferences" placeholder="Yummy!" onKeyDown={handlePos}/>
+            <br></br>
             <label>What is food that makes your stomach turn!?</label>
             <input type="text" className="preferences" placeholder="Yuck!" onKeyDown={handleNeg}/>
             <Pref />
@@ -135,5 +139,6 @@ export default function Form(prop){
 
             <button type="submit" onClick={handleSubmit}>Submit</button>
         </form>
+        </>
     )
 }

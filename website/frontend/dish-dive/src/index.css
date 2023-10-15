@@ -13,6 +13,7 @@ body {
   background-position: top;
   background-repeat: repeat;
   background-attachment: fixed;
+  text-align: center;
 }
 
 code {
