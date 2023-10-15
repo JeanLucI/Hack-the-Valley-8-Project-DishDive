@@ -24,7 +24,7 @@ def generate_suggestion(preferences: list[str], filters: list[str]) -> str:
 
 
 
-    text_prompt = "Imagine you are hungry and need food ideas, give a list of ecxactly 1 new food  idea(s) (something not in preferences) based on the preferences:" + pref + "with filters: "+ filt + "in the format \n\n (You Put Meal Name here): Ingredient1, ingredient2 ... \n \nwhere each meal is seperated with a newline and each ingredient is seperated with a comma"
+    text_prompt = "Imagine you are hungry and need food ideas, give exactly 1 new meal idea(s) (something not in preferences) based on the preferences:" + pref + "with filters: "+ filt + "and only give the name of the meal"
 
 
 
@@ -48,16 +48,16 @@ def generate_suggestion(preferences: list[str], filters: list[str]) -> str:
     #Seperate into Meal and Ingredients
 
     # Split the response into meal and ingredients
-    meal, ingredients_str = response.split(":")
-    meal = meal.strip()  # Remove any leading/trailing whitespace
+    # meal, ingredients_str = response.split(":")
+    # meal = meal.strip()  # Remove any leading/trailing whitespace
 
     # Split the ingredients into a list
-    ingredients = [ingredient.strip() for ingredient in ingredients_str.split(",")]
+    # ingredients = [ingredient.strip() for ingredient in ingredients_str.split(",")]
 
     # Now you have the variables meal and ingredients
     #print("Meal:", meal)
     #print("Ingredients:", ingredients)
 
-    result = meal
+    result = response
 
     return result

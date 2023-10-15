@@ -13,7 +13,8 @@ export default function Home(){
     const queryUser = async() => {
         await axios.post('http://127.0.0.1:5000/check_user', {user_id: username})// CHANGE THIS
         .then(res => {
-            if (res){
+            console.log(res.data.status)
+            if (res.data.status === true){
                 setIsUser(true);
             }
         })
@@ -27,9 +28,6 @@ export default function Home(){
             return
         }
         queryUser();
-        if(username === 'Jean'){
-            setIsUser(true)
-        }
 
         setLoggedIn(true)
     }

@@ -26,7 +26,12 @@ def check_user():
     user_id = data.get('user_id')
 
     # Check if the user exists in the 'users' collection
-    user_exists = bool(mongo.db.users.find_one({'_id': user_id}))
+    user = mongo.db.users.find_one({'_id': user_id})
+
+    if user == None:
+        user_exists = False
+    else:
+        user_exists = True
 
     return jsonify({'status': user_exists})
 

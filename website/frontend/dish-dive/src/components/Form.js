@@ -124,13 +124,14 @@ export default function Form(prop){
 
     return(
         <>
-        <h1 className='welcome'>Welcome Junior Chef {username}!</h1>
+        <h1 className='chef'>Welcome Junior Chef {username}!</h1>
         <form className="firstForm">
+            <label className='new'>Seems like you're new here!</label><br></br><br></br>
             <label className='firstQ'>Enter food items you like one by one!</label>
             <input type="text" className="preferences" placeholder="Yummy!" onKeyDown={handlePos}/>
             <br></br>
             <label>What is food that makes your stomach turn!?</label>
-            <input type="text" className="preferences" placeholder="Yuck!" onKeyDown={handleNeg}/>
+            <input type="text" className="negPreferences" placeholder="Yuck!" onKeyDown={handleNeg}/>
             <Pref />
 
             <label>Select a few additional filters!</label>
