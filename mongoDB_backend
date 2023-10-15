@@ -1,8 +1,7 @@
 # app.py
 from flask import Flask, jsonify
 from flask_pymongo import PyMongo
-
-from flask import request, jsonify
+from flask import request
 
 app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb://localhost:27017/your_database_name"
@@ -30,11 +29,12 @@ def update_preferences():
     data = request.json
     user_id = data.get('user_id')
     preferences = data.get('preferences')
+    filters = data.get('filters')
 
     # Update or insert user preferences into MongoDB
-    mongo.db.users.update_one({'_id': user_id}, {'$set': {'preferences': preferences}}, upsert=True)
+    mongo.db.users.update_one({'_id': user_id}, {'$set': {'preferences': preferences, 'filters': filters}}, upsert=True)
 
-    return jsonify({'status': 'Preferences updated successfully!'})
+    return jsonify({'status': 'Preferences and filters updated successfully!'})
 
 # Route to add taste history
 @app.route('/add_taste_history', methods=['POST'])
@@ -48,6 +48,38 @@ def add_taste_history():
     mongo.db.taste_history.insert_one({'user_id': user_id, 'recipe_id': recipe_id, 'feedback': feedback})
 
     return jsonify({'status': 'Taste history added successfully!'})
+
+# New route to fetch user data
+@app.route('/fetch_user', methods=['POST'])
+def fetch_user():
+    data = request.json
+    user_id = data.get('user_id')
+
+    # Fetch user data from MongoDB
+    user_data = mongo.db.users.find_one({'_id': user_id}, {'_id': 0, 'preferences': 1, 'filters': 1})
+
+    return jsonify(user_data)
+
+# New route to fetch meal suggestion based on user data
+@app.route('/fetch_suggestion', methods=['POST'])
+def fetch_suggestion():
+    data = request.json
+    user_id = data.get('user_id')
+
+    # Fetch user data from MongoDB
+    user_data = mongo.db.users.find_one({'_id': user_id}, {'_id': 0, 'preferences': 1, 'filters': 1})
+
+    # Use the fetched user data to generate a meal suggestion (you can integrate your existing code here)
+    # For now, let's assume you have a function called generate_suggestion
+    suggestion = generate_suggestion(user_data.get('preferences'), user_data.get('filters'))
+
+    return jsonify({'suggestion': suggestion})
+
+# Function to generate a meal suggestion (replace this with your actual logic)
+def generate_suggestion(preferences, filters):
+    # Your existing code for generating suggestions goes here
+    # For simplicity, let's return a dummy suggestion
+    return "Dummy Suggestion: Pasta with Tomato Sauce"
 
 if __name__ == '__main__':
     app.run(debug=True)
