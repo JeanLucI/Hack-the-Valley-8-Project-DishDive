@@ -37,15 +37,13 @@ export default function Home(){
     if (!loggedIn && !isUser) {
         return (
             <>
-                <h1>DishDive</h1>
-
+                <img className="title" src={require('../assets/logo.png')}></img>
+                <br></br>
                 <form className="username">
-                    <label>Username</label>
-                    <input type="text" id="username" name="username" placeholder="Username..." value = {username} onChange={ (e) => setUsername(e.target.value) }/>
-                    <button type="submit" onClick={handleSubmit}>Submit</button>
+                    <input type="text" id="username" name="username" placeholder="Username" value = {username} onChange={ (e) => setUsername(e.target.value) }/>
+                    {message}
+                    <button type="submit" onClick={handleSubmit}>Enter</button>
                 </form>
-
-                {message}
             </>
         )
     }

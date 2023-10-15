@@ -1,38 +1,94 @@
-.App {
+.username {
+  margin: 0 auto;
+  display: block;
+  width: 400px;
+  padding: 40px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.username input {
+  font-family: "Jack Armstrong BB";
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0px;
+  width: 300px;
+  padding: 3px;
+  padding-bottom: 10px;
+  border-radius: 20px;
+  border: 2px solid #be8563;
+  text-align: center;
+  color: #ebc7b2;
+  font-size: 20px;
+}
+.username button {
+  font-family: "Jack Armstrong BB";
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 325px;
+  border-radius: 30px;
+  border: 3px solid #efd3c8;
+  background-color: #d3ebfb;
+  cursor: pointer;
+  font-size: 30px;
+  padding-bottom: 13px;
+  color: #be8563;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.title{
+  display: block;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 80px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.error{
+  color: red;
+}
+
+.errorContainer{
   display: flex;
-  flex-direction: column;
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.tag-container{
+  border: 3px solid #be8563;
+  padding: .5em;
+  border-radius: 5px;
+  display: flex;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .5em;
+  background-color: #d3ebfb;
+}
+
+.tag-item{
+  background-color:#ebc7b2;
+  display: inline-block;
+  padding: .5em .75em;
+  border-radius: 20px;
+}
+
+.tag-item .close{
+  height: 20px;
+  width: 20px;
+  background-color: #be8563;
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: .5em;
+  font-size: 18px;
+  cursor: pointer;
+  font-family: 'Courier New', Courier , monospace;
+  font-weight: bold;
 }

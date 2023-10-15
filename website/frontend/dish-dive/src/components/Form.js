@@ -26,7 +26,9 @@ export default function Form(prop){
         if(!value.trim()) {
             return
         }
-        setPref([...pref, value])
+        if (!pref.includes(value)){
+            setPref([...pref, value])
+        }
         e.preventDefault()
         e.target.value = ''
     }
@@ -39,7 +41,9 @@ export default function Form(prop){
         if(!value.trim()) {
             return
         }
-        setPref([...pref, value])
+        if (!pref.includes(value)){
+            setPref([...pref, value])
+        }
         e.preventDefault()
         e.target.value = ''
     }
