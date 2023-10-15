@@ -2,6 +2,8 @@ from flask import Blueprint, request, jsonify
 
 from .extensions import mongo
 
+from .suggestion import generate_suggestion
+
 main = Blueprint('main', __name__)
 
 @main.route('/')
@@ -61,10 +63,3 @@ def fetch_suggestion():
     suggestion = generate_suggestion(user_data['preferences'], user_data['filters'])
 
     return jsonify({'suggestion': suggestion})
-
-
-# Function to generate a meal suggestion (replace this with your actual logic)
-def generate_suggestion(preferences, filters):
-    # Your existing code for generating suggestions goes here
-    # For simplicity, let's return a dummy suggestion
-    return "Pasta with Tomato Sauce"
