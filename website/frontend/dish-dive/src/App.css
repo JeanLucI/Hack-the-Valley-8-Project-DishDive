@@ -42,6 +42,7 @@
   width: 400;
   padding: 40px;
   text-align: center;
+  margin-top: 5px;
 }
 
 .firstForm input {
@@ -58,14 +59,80 @@
   text-align: center;
   color: #ebc7b2;
   font-size: 20px;
+  margin-top: 20px;
+}
+
+.firstForm button {
+  font-family: "Jack Armstrong BB";
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
+  border-radius: 30px;
+  border: 3px solid #d3ebfb;
+  background-color: #efd3c8;
+  cursor: pointer;
+  font-size: 30px;
+  padding-bottom: 13px;
+  color: #be8563;
 }
 
 .firstForm label{
-  margin-bottom: auto;
+  margin-bottom: 20px;
 }
 
 .welcome{
   margin-top: 10%;
+  color:#be8563;
+}
+
+.chef{
+  margin-top: 30px;
+  margin-bottom: 0px;
+  color:#be8563;
+}
+
+.new{
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.menu{
+  background-color: white;
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  border:2px solid #be8563;
+}
+
+.menu h2{
+  text-decoration: underline;
+}
+
+.menu button{
+  background-color: white;
+  border: 0px;
+  margin-bottom: 20px;
+}
+
+.like{
+  margin-right: 10px;
+}
+
+.negResponse{
+  color: red;
+}
+
+.posResponse{
+  color: green;
+}
+
+.suggestion{
+  color: goldenrod;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .title{
@@ -89,9 +156,11 @@
 }
 
 .tag-container{
+  margin-top: 20px;
+  margin-bottom: 20px;
   border: 3px solid #be8563;
   padding: .5em;
-  border-radius: 5px;
+  border-radius: 20px;
   display: flex;
   width: 500px;
   margin-left: auto;

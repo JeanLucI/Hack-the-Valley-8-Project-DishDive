@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default function Suggestions(prop){
     const [username, setUsername] = useState(prop.username)
-    const [suggestion, setSuggestion] = useState('Brocoli')
+    const [suggestion, setSuggestion] = useState('Loading...')
     const [response, setResponse] = useState()
     const [disabled, setDisabled] = useState(false)
     const [preferences, setPreferences] = useState([])
@@ -47,7 +47,7 @@ export default function Suggestions(prop){
     }
     
     const handleDislike = (e) =>{
-        setResponse(<p className="response">Thank you for the feedback! We will avoid this meal in the future!</p>)
+        setResponse(<p className="negResponse">Thank you for the feedback! We will avoid this meal in the future!</p>)
         setDisabled(true)
         const data = {
             user_id: username,
@@ -57,7 +57,7 @@ export default function Suggestions(prop){
     }
 
     const handleLike = (e) =>{
-        setResponse(<p className="response">Thank you for the feedback! This meal will be added to your preferences!</p>)
+        setResponse(<p className="posResponse">Thank you for the feedback! This meal will be added to your preferences!</p>)
         setDisabled(true)
         const data = {
             user_id: username,
@@ -68,12 +68,14 @@ export default function Suggestions(prop){
 
     return(
         <>
-        <h3 className="welcome">Welcome {username}!</h3>
-        <p className="suggestion">On today's personalized menu we a have special suggestion for you today: {suggestion}</p>
-        <p className="feedback">Do you like the meals suggested???</p>
-        <div className="buttons">
-            <button type="button" className="like" disabled = {disabled} onClick={handleLike}>:)</button>
-            <button type="button" className="dislike" disabled = {disabled} onClick={handleDislike}>:(</button>
+        <h2 className="welcome">Welcome {username}!</h2>
+        <div className="menu">
+            <h3>MENU</h3>
+            <p className="preSuggestion">On today's personalized menu we a have special suggestion:</p>
+            <p className="suggestion">{suggestion}</p>
+            <p className="feedback">Do you like the suggested meal?</p>
+            <button type="button" className="like" disabled = {disabled} onClick={handleLike}>&#128523;</button>
+            <button type="button" className="dislike" disabled = {disabled} onClick={handleDislike}>&#129314;</button>
         </div>
         
         {response}
