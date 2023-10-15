@@ -12,6 +12,19 @@ mongo = PyMongo(app)
 def index():
     return 'Connected to MongoDB!'
 
+# New route to add a new user to the database
+@app.route('/add_user', methods=['POST'])
+def add_user():
+    data = request.json
+    user_id = data.get('user_id')
+    preferences = data.get('preferences')
+    filters = data.get('filters')
+
+    # Insert a new user into the 'users' collection
+    mongo.db.users.insert_one({'_id': user_id, 'preferences': preferences, 'filters': filters})
+
+    return jsonify({'status': 'User added successfully!'})
+
 # New route to check if the user exists
 @app.route('/check_user', methods=['POST'])
 def check_user():
@@ -50,7 +63,7 @@ def add_taste_history():
     return jsonify({'status': 'Taste history added successfully!'})
 
 # New route to fetch user data
-@app.route('/fetch_user', methods=['POST'])
+@app.route('/fetch_user', methods=['GET'])
 def fetch_user():
     data = request.json
     user_id = data.get('user_id')
@@ -61,7 +74,7 @@ def fetch_user():
     return jsonify(user_data)
 
 # New route to fetch meal suggestion based on user data
-@app.route('/fetch_suggestion', methods=['POST'])
+@app.route('/fetch_suggestion', methods=['GET'])
 def fetch_suggestion():
     data = request.json
     user_id = data.get('user_id')
@@ -75,18 +88,6 @@ def fetch_suggestion():
 
     return jsonify({'suggestion': suggestion})
 
-# New route to add a new user to the database
-@app.route('/add_user', methods=['POST'])
-def add_user():
-    data = request.json
-    user_id = data.get('user_id')
-    preferences = data.get('preferences')
-    filters = data.get('filters')
-
-    # Insert a new user into the 'users' collection
-    mongo.db.users.insert_one({'_id': user_id, 'preferences': preferences, 'filters': filters})
-
-    return jsonify({'status': 'User added successfully!'})
 
 # Function to generate a meal suggestion (replace this with your actual logic)
 def generate_suggestion(preferences, filters):
