@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "Jack Armstrong BB";
+  src: url("./assets/Jack\ Armstrong\ BB.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  font-family: "Jack Armstrong BB";
+  background-image: url('/public/background.png');
+  background-size: cover;
+  background-position: top;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  text-align: center;
+}
+
+code {
+  font-family: "Jack Armstrong BB";
+}
