@@ -3,6 +3,7 @@
 DishDive is a user-friendly application designed to enhance your dining experience by understanding your food preferences and offering personalized food suggestions. This app utilizes MongoDB for seamless data storage and leverages OpenAI's cutting-edge AI capabilities to provide you with the perfect meal recommendations.
 
 **Running React Frontend**
+
 Dependencies are found in package.json dive-dash file and more React app running instructions in the README.md in that file as well
 
 **Running Flask Backend**
